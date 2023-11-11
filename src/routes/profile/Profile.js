@@ -57,7 +57,7 @@ const Profile = ({ currentUser, handleLogout, updateUser }) => {
 
     const deleteUser = async (id) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_USERS_URL}/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_USER_URL}/${id}`, {
                 method: 'DELETE'
             });
             if (response.status === 200) {

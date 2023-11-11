@@ -69,12 +69,6 @@ const Register = ({ activateLoginModal }) => {
       if (currForm.repeatPassword.length > 0) {
         delete currForm.repeatPassword;
       }
-      if (currForm.address !== undefined) {
-        delete currForm.address;
-      }
-      if (currForm.number !== undefined) {
-        delete currForm.number;
-      }
       currForm.email = currForm.email.toLowerCase();
       const accCreation = await createUser(currForm);
       if (accCreation === false) {

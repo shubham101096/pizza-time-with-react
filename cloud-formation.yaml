@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+
+  BeanstalkApplication:
+    Type: "AWS::ElasticBeanstalk::Application"
+    Properties:
+      ApplicationName: PIZZA_APP
+      Description: "Client Application"
+
+  BeanstalkApplicationVersion:
+    Type: "AWS::ElasticBeanstalk::ApplicationVersion"
+    Properties:
+      ApplicationName: !Ref BeanstalkApplication
+      Description: "Application Version 1.0"
+      SourceBundle:
+        S3Bucket: csci5902-term-bucket
+        S3Key: pizza.zip
+
+  BeanstalkEnvironment:
+    Type: "AWS::ElasticBeanstalk::Environment"
+    Properties:
+      ApplicationName: !Ref BeanstalkApplication
+      Description: "Elastic Beanstalk Environment"
+      VersionLabel: !Ref BeanstalkApplicationVersion
+      SolutionStackName: "64bit Amazon Linux 2023 v6.0.1 running Node.js 18"
+      OptionSettings:
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: ServiceRole
+          Value: !Sub "arn:aws:iam::${AWS::AccountId}:role/LabRole"
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: IamInstanceProfile
+          Value: !Sub "arn:aws:iam::${AWS::AccountId}:instance-profile/LabInstanceProfile"
+        - Namespace: aws:autoscaling:asg
+          OptionName: MinSize
+          Value: "1"
+        - Namespace: aws:autoscaling:asg
+          OptionName: MaxSize
+          Value: "2"
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: InstanceType
+          Value: "t3.small"
+
+  CloudFrontDistribution:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !GetAtt BeanstalkEnvironment.EndpointURL
+            Id: !Ref BeanstalkEnvironment
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: !Ref BeanstalkEnvironment
+          ForwardedValues:
+            QueryString: false
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: true
+
+Outputs:
+  EnvironmentURL:
+    Description: "URL of the Elastic Beanstalk Environment"
+    Value: !Sub "http://${BeanstalkEnvironment.EndpointURL}"
+
+  CloudFrontDistributionURL:
+    Description: "URL of the CloudFront distribution"
+    Value: !Sub "https://${CloudFrontDistribution.DomainName}"

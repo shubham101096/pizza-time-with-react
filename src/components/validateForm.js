@@ -26,7 +26,7 @@ const validateForm = (form) => (value) => {
         if (!value.password) {
             errors.password = "Please enter a valid password"
         }
-        else if (value.password.length < 8 || value.repeatPassword.length < 8) {
+        else if (value.password.length < 3 || value.repeatPassword.length < 3) {
             errors.password = "Password should be min. 8 characters"
         }
         if (!value.repeatPassword) {
@@ -46,7 +46,7 @@ const validateForm = (form) => (value) => {
         if (value.email.length !== 0 && !emailRegex.test(value.email)) {
             errors.email = "Please enter valid email"
         }
-        if (value.password.length !== 0 && value.password.length < 8) {
+        if (value.password.length !== 0 && value.password.length < 3) {
             errors.password = "Password should be min. 8 characters"
         }
         if (value.number.length !== 0 && value.number.length < 5) {
@@ -66,7 +66,7 @@ const validateForm = (form) => (value) => {
         if (!value.password) {
             errors.password = 'Please enter a valid password';
         }
-        else if (value.password.length < 8) {
+        else if (value.password.length < 3) {
             errors.password = 'Password should be min. 8 characters';
         }
     }

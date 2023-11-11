@@ -46,24 +46,34 @@ function App() {
 
   const getUser = async (id) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_USERS_URL}/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_USER_URL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: id }), // Adjust the payload as needed
+      });
+  
       const body = await response.json();
-      setCurrentUser(body.data[0]);
-      const jsonUser = JSON.stringify(body.data[0]);
-      sessionStorage.setItem('currentUser', jsonUser);
+      console.log("resposne--body--", body.data);
+  
       if (response.status === 200) {
+        setCurrentUser(body);
+        const jsonUser = JSON.stringify(body.data);
+        sessionStorage.setItem('currentUser', jsonUser);
+        console.log("resposne--jsonUser--", jsonUser);
         return true;
       }
-    }
-    catch (err) {
-      console.log(err.message)
+    } catch (err) {
+      console.log(err.message);
       return false;
     }
-  }
+  };
+  
 
   const updateUser = async (id, user) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_USERS_URL}/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_USER_URL}/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
