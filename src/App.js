@@ -51,7 +51,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id: id }), // Adjust the payload as needed
+        body: JSON.stringify({ id: id }),
       });
   
       const body = await response.json();
