@@ -50,6 +50,7 @@ function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-api-key': `${process.env.REACT_APP_API_KEY}`
         },
         body: JSON.stringify({ id: id }),
       });
@@ -76,7 +77,8 @@ function App() {
       const response = await fetch(`${process.env.REACT_APP_USER_URL}/${id}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'x-api-key': `${process.env.REACT_APP_API_KEY}`
         },
         body: JSON.stringify(user),
       });

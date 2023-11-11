@@ -34,7 +34,7 @@ import ItalianPastaSalad from '../assets/images/pasta-images/Italian Pasta Salad
 import Lasagna from '../assets/images/pasta-images/Lasagna Roll Ups.jpeg'
 import ToastedRavioli from '../assets/images/pasta-images/Toasted Ravioli.jpeg'
 import OrecchietteBroccoli from '../assets/images/pasta-images/Orecchiette with Broccoli Rabe.jpeg'
-import LambRagu from '../assets/images/pasta-images/Lamb Ragù.jpeg'
+import LambRagu from '../assets/images/pasta-images/Lamb Ragu.jpeg'
 import LasagnaBolognese from '../assets/images/pasta-images/Lasagna Bolognese.jpeg'
 import LemonRicotta from '../assets/images/pasta-images/Lemon Ricotta Pasta.jpeg'
 import StuffedRigatoni from '../assets/images/pasta-images/Stuffed Rigatoni.jpeg'
@@ -1487,7 +1487,7 @@ export const allProductsData = [
   {
     id: 'lamb-ragu',
     ItemImg: LambRagu,
-    ItemName: 'Lamb Ragù',
+    ItemName: 'Lamb Ragu',
     ItemIngredients:
       'Lamb shoulder, gnocchi, red wine, heavy cream, tomato paste.',
     ItemPrice: (12).toFixed(2),
@@ -1685,7 +1685,7 @@ export const allProductsData = [
   {
     id: 'lamb-ragu-second',
     ItemImg: LambRagu,
-    ItemName: 'Lamb Ragù',
+    ItemName: 'Lamb Ragu',
     ItemIngredients:
       'Lamb shoulder, gnocchi, red wine, heavy cream, tomato paste.',
     ItemPrice: (12).toFixed(2),
@@ -2755,7 +2755,7 @@ export const allProductsData = [
   {
     id: 'lamb-ragu-sale',
     ItemImg: LambRagu,
-    ItemName: 'Lamb Ragù',
+    ItemName: 'Lamb Ragu',
     ItemIngredients:
       'Lamb shoulder, gnocchi, red wine, heavy cream, tomato paste.',
     ItemPriceBefore: (12).toFixed(2),
@@ -2874,7 +2874,7 @@ export const allProductsData = [
   {
     id: 'lamb-ragu-sale-second',
     ItemImg: LambRagu,
-    ItemName: 'Lamb Ragù',
+    ItemName: 'Lamb Ragu',
     ItemIngredients:
       'Lamb shoulder, gnocchi, red wine, heavy cream, tomato paste.',
     ItemPriceBefore: (12).toFixed(2),

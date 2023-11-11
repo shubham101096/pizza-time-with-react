@@ -37,7 +37,8 @@ const Register = ({ activateLoginModal }) => {
           method: 'POST',
           body: JSON.stringify(user),
           headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            'x-api-key': `${process.env.REACT_APP_API_KEY}`
           }
         });
         if (response.status === 200) {

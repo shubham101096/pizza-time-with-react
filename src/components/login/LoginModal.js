@@ -40,6 +40,7 @@ const LoginModal = ({ setLoginModalWindow, setValidLogin, loginModalWindow, hide
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'x-api-key': `${process.env.REACT_APP_API_KEY}`
           },
           body: JSON.stringify(formValue),
         });
